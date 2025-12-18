@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{% static 'css/output.css' %}">
+</head>
+<body class="bg-black">
+
+    <!-- NAVIGATION BAR -->
+
+    {% include 'includes/nav-bar.html' %}
+
+    <!-- MAIN CONTENT GOES HERE -->
+
+
+
+    {% block content %}{% endblock %}
+
+    <!-- FOOTER -->
+
+    {% include 'includes/footer.html' %}
+</body>
+</html>
