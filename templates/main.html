@@ -3,18 +3,26 @@
 <html>
 <head>
     <link rel="stylesheet" href="{% static 'css/output.css' %}">
+    <title>
+        
+        {% block title %}
+            
+        {% endblock title %}
+            
+    </title>
 </head>
-<body class="bg-black">
+<body class="bg-slate-900 min-h-screen flex flex-col">
 
     <!-- NAVIGATION BAR -->
 
     {% include 'includes/nav-bar.html' %}
 
     <!-- MAIN CONTENT GOES HERE -->
+    <main class="grow">
+        {% block content %}{% endblock %}
 
+    </main>
 
-
-    {% block content %}{% endblock %}
 
     <!-- FOOTER -->
 
