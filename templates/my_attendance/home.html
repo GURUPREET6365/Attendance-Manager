@@ -1,0 +1,240 @@
+{% extends 'main.html' %}
+
+
+{% block title %}
+    HOME - Attendance Manager
+{% endblock title %}
+    
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <!-- Authenticated User Dashboard Preview -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-700 rounded-2xl p-8 shadow-xl border border-slate-600">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5z"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+                        Welcome back, <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">{{ user.username }}</span>!
+                    </h1>
+                    <p class="text-gray-300 text-lg mb-8">
+                        You're all set to manage your attendance. Stay on track and never miss a class again.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="#" class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg active:from-blue-700 active:to-purple-700 md:hover:from-blue-700 md:hover:to-purple-700 md:transition-all md:duration-300">
+                            View Dashboard
+                        </a>
+                        <a href="#" class="px-6 py-3 border-2 border-blue-500 text-blue-400 font-semibold rounded-lg active:bg-blue-500/10 md:hover:bg-blue-500/10 md:transition-all md:duration-300">
+                            Quick Stats
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <!-- Hero Section -->
+        <section class="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <!-- Background decorative elements -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+            </div>
+            
+            <div class="relative max-w-5xl mx-auto text-center">
+                <div class="inline-flex items-center px-4 py-2 bg-blue-600/20 rounded-full text-blue-400 text-sm font-medium mb-6 border border-blue-500/30">
+                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    Smart Attendance Tracking
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-6 leading-tight">
+                    Master Your <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Attendance</span> with Ease
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    Stay organized, receive timely reminders, and never fall behind on your attendance goals. 
+                    Our intelligent system helps students achieve their academic targets effortlessly.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="{% url 'register' %}" class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-lg shadow-lg shadow-blue-500/30 active:from-blue-700 active:to-purple-700 md:hover:from-blue-700 md:hover:to-purple-700 md:transition-all md:duration-300 md:hover:shadow-xl md:hover:scale-105 text-lg">
+                        Get Started Free
+                    </a>
+                    <a href="{% url 'login' %}" class="px-8 py-4 border-2 border-gray-500 text-gray-300 font-bold rounded-lg active:bg-gray-700/50 md:hover:bg-gray-700/50 md:hover:border-gray-400 md:transition-all md:duration-300 text-lg">
+                        Sign In
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+                        Powerful Features for <span class="text-blue-400">Students</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">
+                        Everything you need to track, manage, and improve your attendance in one place.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="group bg-gradient-to-br from-slate-800 to-slate-700/50 rounded-xl p-6 border border-slate-600/50 md:hover:border-blue-500/50 md:transition-all md:duration-300">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-500 rounded-lg flex items-center justify-center mb-5 md:group-hover:scale-110 md:transition-transform md:duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Email Notifications</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Receive timely email reminders at your preferred schedule. Never miss marking your attendance again.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="group bg-gradient-to-br from-slate-800 to-slate-700/50 rounded-xl p-6 border border-slate-600/50 md:hover:border-purple-500/50 md:transition-all md:duration-300">
+                        <div class="w-14 h-14 bg-gradient-to-br from-purple-600 to-purple-500 rounded-lg flex items-center justify-center mb-5 md:group-hover:scale-110 md:transition-transform md:duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Browser Notifications</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Get instant Chrome push notifications right on your desktop. Stay alert even when you're multitasking.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="group bg-gradient-to-br from-slate-800 to-slate-700/50 rounded-xl p-6 border border-slate-600/50 md:hover:border-pink-500/50 md:transition-all md:duration-300">
+                        <div class="w-14 h-14 bg-gradient-to-br from-pink-600 to-pink-500 rounded-lg flex items-center justify-center mb-5 md:group-hover:scale-110 md:transition-transform md:duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Attendance Analytics</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Track your present days, calculate percentages, and visualize your attendance trends at a glance.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="group bg-gradient-to-br from-slate-800 to-slate-700/50 rounded-xl p-6 border border-slate-600/50 md:hover:border-green-500/50 md:transition-all md:duration-300">
+                        <div class="w-14 h-14 bg-gradient-to-br from-green-600 to-green-500 rounded-lg flex items-center justify-center mb-5 md:group-hover:scale-110 md:transition-transform md:duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Target Goals</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Set your minimum attendance percentage and get alerts when you're falling behind your goals.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 5 -->
+                    <div class="group bg-gradient-to-br from-slate-800 to-slate-700/50 rounded-xl p-6 border border-slate-600/50 md:hover:border-yellow-500/50 md:transition-all md:duration-300">
+                        <div class="w-14 h-14 bg-gradient-to-br from-yellow-600 to-yellow-500 rounded-lg flex items-center justify-center mb-5 md:group-hover:scale-110 md:transition-transform md:duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Low Attendance Alerts</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Receive proactive warnings when your attendance drops, giving you time to recover before it's too late.
+                        </p>
+                    </div>
+                    
+                    <!-- Feature 6 -->
+                    <div class="group bg-gradient-to-br from-slate-800 to-slate-700/50 rounded-xl p-6 border border-slate-600/50 md:hover:border-cyan-500/50 md:transition-all md:duration-300">
+                        <div class="w-14 h-14 bg-gradient-to-br from-cyan-600 to-cyan-500 rounded-lg flex items-center justify-center mb-5 md:group-hover:scale-110 md:transition-transform md:duration-300">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Custom Schedules</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Choose when you want to be reminded — morning, afternoon, or any time that suits your routine.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+                        How It <span class="text-purple-400">Works</span>
+                    </h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto">
+                        Get started in just three simple steps and take control of your attendance today.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 -->
+                    <div class="text-center">
+                        <div class="relative inline-block mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-blue-500/30">
+                                1
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Create Your Account</h3>
+                        <p class="text-gray-400">
+                            Sign up for free in seconds. Just your email and a password to get started.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="text-center">
+                        <div class="relative inline-block mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-purple-500/30">
+                                2
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Set Your Preferences</h3>
+                        <p class="text-gray-400">
+                            Configure your notification times, target percentage, and reminder preferences.
+                        </p>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="text-center">
+                        <div class="relative inline-block mb-6">
+                            <div class="w-16 h-16 bg-gradient-to-br from-pink-600 to-red-600 rounded-full flex items-center justify-center text-white text-2xl font-bold shadow-lg shadow-pink-500/30">
+                                3
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Track & Improve</h3>
+                        <p class="text-gray-400">
+                            Mark your attendance daily, monitor your progress, and achieve your goals.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl p-8 sm:p-12 text-center shadow-xl">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+                        Ready to Take Control?
+                    </h2>
+                    <p class="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+                        Join thousands of students who are already mastering their attendance with our powerful tracking system.
+                    </p>
+                    <a href="{% url 'register' %}" class="inline-block px-10 py-4 bg-white text-purple-600 font-bold rounded-lg shadow-lg active:bg-gray-100 md:hover:bg-gray-100 md:transition-all md:duration-300 md:hover:scale-105 text-lg">
+                        Start For Free Today
+                    </a>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endblock content%}

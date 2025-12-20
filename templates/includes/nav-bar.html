@@ -1,38 +1,166 @@
 {% load static %}
-<!-- NAVIGATION BAR IS HERE -->
 
-<nav class="w-full h-16 bg-indigo-200 ">
-    <div class="w-full h-16 flex justify-between text-center items-center">
-    <a href="#" class="text-2xl text-emerald-950 ml-2 font-bold">
-        Attendance Manager
-    </a>
-        
-    <ul class="md:flex hidden text-2xl text-emerald-950 space-x-6 font-semibold">
-        <a href="#">home</a>
-        <a href="#">about</a>
-        <a href="#">attendance</a>
-    </ul>
+<!-- RESPONSIVE NAVBAR - CSS ONLY (TAILWIND CHECKBOX HACK) -->
 
-    <div class="text-2xl text-emerald-950 items-center mr-2 hidden md:block">
-        <a href="#" class="bg-blue-700 text-white border w-28 font-semibold h-10 rounded-lg inline-block">login</a>
-        <a href="#" class="bg-blue-700 text-white border w-28 font-semibold h-10 rounded-lg inline-block">register</a>
-    </div>
-    <div class="md:hidden mr-3" id="hamburger-button">
-        <button href="#" class="cursor-pointer text-4xl">&#8801;</button>
-    </div>
+<!-- Hidden Checkbox for Mobile Menu Toggle - Must be FIRST for peer to work -->
+<input type="checkbox" id="menu-toggle" class="hidden peer">
 
-    <!-- This is the container for the nav links when the hamburger will be clicked. -->
-
+<!-- Main Navigation -->
+<nav class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 border-b border-gray-200 shadow-lg">
+    <!-- Gradient accent line -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600"></div>
     
-
-
-
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            
+            <!-- Logo/Brand -->
+            <a href="{% url 'home' %}" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center transform md:group-hover:scale-110 md:transition-transform md:duration-300 shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                    </svg>
+                </div>
+                <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hidden sm:block">
+                    Attendance Manager
+                </span>
+            </a>
+            
+            <!-- Desktop Navigation Links -->
+            <ul class="hidden md:flex items-center space-x-1">
+                <li>
+                    <a href="{% url 'home' %}" 
+                       class="px-4 py-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 font-medium transform hover:scale-105">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#" 
+                       class="px-4 py-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 font-medium transform hover:scale-105">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="#" 
+                       class="px-4 py-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 font-medium transform hover:scale-105">
+                        Settings
+                    </a>
+                </li>
+            </ul>
+            
+            <!-- Desktop Auth Section -->
+            <div class="hidden md:flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                    <div class="flex items-center space-x-3 px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5z"/>
+                            </svg>
+                        </div>
+                        <span class="font-semibold text-gray-800">{{user.username}}</span>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" 
+                       class="px-5 py-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300">
+                        Login
+                    </a>
+                    <a href="{% url 'register' %}" 
+                       class="px-5 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
+                        Register
+                    </a>
+                {% endif %}
+            </div>
+            
+            <!-- Mobile Menu Button (Label for checkbox) -->
+            <label for="menu-toggle" class="md:hidden p-2 rounded-lg cursor-pointer active:bg-gray-100 hover:bg-gray-50 transition-colors duration-300">
+                <!-- Hamburger Icon (visible when menu is closed) -->
+                <svg class="w-6 h-6 text-gray-700 peer-checked:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </label>
+        </div>
     </div>
 </nav>
-<div class="absolute -left-full flex flex-col transition-all duration-700 ease-in-out bg-blue-700 w-full h-40  items-center justify-center space-y-2 rounded-lg mt-15" id="hamburger-card">
-        <a href="#" class="font-bold">home</a>
-        <a href="#" class="font-bold">about</a>
-        <a href="#" class="font-bold">attendance</a>
-</div>
 
-<script src="{% static 'js/includes/nav-bar.js' %}"></script>
+<!-- Overlay (Dark background) - Sibling of checkbox, uses peer-checked -->
+<label for="menu-toggle" 
+       class="fixed inset-0 bg-black/50 z-40 md:hidden
+              opacity-0 pointer-events-none
+              peer-checked:opacity-100 peer-checked:pointer-events-auto
+              transition-opacity duration-300"></label>
+
+<!-- Mobile Menu Panel - Sibling of checkbox, uses peer-checked -->
+<div class="fixed top-0 right-0 h-full w-80 bg-white shadow-2xl z-50 md:hidden
+            translate-x-full peer-checked:translate-x-0
+            transition-transform duration-300 ease-in-out">
+    
+    <!-- Mobile Menu Header -->
+    <div class="flex justify-between items-center p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-purple-50">
+        <h3 class="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Menu
+        </h3>
+        <label for="menu-toggle" class="p-2 rounded-lg cursor-pointer active:bg-gray-200 hover:bg-gray-100 transition-colors duration-300">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </label>
+    </div>
+    
+    <!-- Mobile Menu Content -->
+    <div class="p-6 space-y-6 overflow-y-auto h-[calc(100%-80px)]">
+        
+        <!-- User Info (if authenticated) -->
+        {% if user.is_authenticated %}
+        <div class="flex items-center space-x-3 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5z"/>
+                </svg>
+            </div>
+            <div>
+                <p class="font-semibold text-gray-800">{{user.username}}</p>
+                <p class="text-sm text-gray-500">Online</p>
+            </div>
+        </div>
+        {% endif %}
+        
+        <!-- Mobile Navigation Links -->
+        <nav class="space-y-2">
+            <a href="{% url 'home' %}" 
+               class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-100 font-medium transition-colors duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="#" 
+               class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-100 font-medium transition-colors duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span>About</span>
+            </a>
+            <a href="#" 
+               class="flex items-center space-x-3 px-4 py-3 rounded-lg text-gray-700 hover:bg-blue-50 hover:text-blue-600 active:bg-blue-100 font-medium transition-colors duration-300">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <span>Settings</span>
+            </a>
+        </nav>
+        
+        <!-- Mobile Auth Buttons -->
+        {% if not user.is_authenticated %}
+        <div class="space-y-3 pt-4 border-t border-gray-200">
+            <a href="{% url 'login' %}" 
+               class="block w-full px-5 py-3 text-center text-blue-600 font-semibold border-2 border-blue-600 rounded-lg hover:bg-blue-50 active:bg-blue-100 transition-colors duration-300">
+                Login
+            </a>
+            <a href="{% url 'register' %}" 
+               class="block w-full px-5 py-3 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 transition-all duration-300 shadow-md">
+                Register
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>

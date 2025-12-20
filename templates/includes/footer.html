@@ -1,38 +1,101 @@
-<footer
-  class="bg-gray-800 text-white p-4
-         flex flex-col
-         md:flex-row
-         items-center
-         md:justify-between
-         text-center
-         space-y-5
-         font-bold
-         md:space-y-0"
->
-    <div>
-        &copy; 2025 Attendance Manager
+<!-- Modern Professional Footer -->
+<footer class="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-gray-100">
+    <!-- Decorative top border -->
+    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 py-12">
+        <!-- Main Footer Content -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+            
+            <!-- Brand Section -->
+            <div class="flex flex-col items-center md:items-start space-y-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        Attendance Manager
+                    </h3>
+                </div>
+                <p class="text-gray-400 text-sm text-center md:text-left max-w-xs">
+                    Streamline your attendance tracking with our modern, efficient solution.
+                </p>
+                <div class="flex items-center space-x-2 text-gray-400 text-sm">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                    </svg>
+                    <span>&copy; 2025 All rights reserved</span>
+                </div>
+            </div>
+            
+            <!-- Quick Links Section -->
+            <div class="flex flex-col items-center md:items-start space-y-4">
+                <h4 class="text-lg font-semibold text-white">Quick Links</h4>
+                <nav class="flex flex-col space-y-3">
+                    <a href="{% url 'home' %}" class="group text-gray-400 md:hover:text-white md:transition-all md:duration-300 flex items-center space-x-2 active:text-white">
+                        <span class="w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 md:group-hover:w-4 md:transition-all md:duration-300"></span>
+                        <span class="transform md:group-hover:translate-x-1 md:transition-transform md:duration-300">Home</span>
+                    </a>
+                    <a href="#" class="group text-gray-400 md:hover:text-white md:transition-all md:duration-300 flex items-center space-x-2 active:text-white">
+                        <span class="w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 md:group-hover:w-4 md:transition-all md:duration-300"></span>
+                        <span class="transform md:group-hover:translate-x-1 md:transition-transform md:duration-300">About Us</span>
+                    </a>
+                    <a href="#" class="group text-gray-400 md:hover:text-white md:transition-all md:duration-300 flex items-center space-x-2 active:text-white">
+                        <span class="w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 md:group-hover:w-4 md:transition-all md:duration-300"></span>
+                        <span class="transform md:group-hover:translate-x-1 md:transition-transform md:duration-300">Privacy Policy</span>
+                    </a>
+                    <a href="#" class="group text-gray-400 md:hover:text-white md:transition-all md:duration-300 flex items-center space-x-2 active:text-white">
+                        <span class="w-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 md:group-hover:w-4 md:transition-all md:duration-300"></span>
+                        <span class="transform md:group-hover:translate-x-1 md:transition-transform md:duration-300">Contact</span>
+                    </a>
+                </nav>
+            </div>
+            
+            <!-- Social Media Section -->
+            <div class="flex flex-col items-center md:items-start space-y-4">
+                <h4 class="text-lg font-semibold text-white">Connect With Us</h4>
+                <div class="flex space-x-4">
+                    <!-- GitHub -->
+                    <a href="https://github.com/GURUPREET6365" target="_blank" 
+                       class="group relative w-12 h-12 bg-slate-700/50 backdrop-blur-sm rounded-lg flex items-center justify-center md:hover:bg-gradient-to-br md:hover:from-purple-600 md:hover:to-blue-600 md:transition-all md:duration-300 transform md:hover:scale-110 md:hover:-rotate-6 active:bg-slate-600">
+                        <svg class="w-6 h-6 text-gray-300 md:group-hover:text-white md:transition-colors md:duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.242 2.873.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.804 5.625-5.476 5.92.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.576C20.565 21.796 24 17.298 24 12 24 5.37 18.627 0 12 0z"/>
+                        </svg>
+                        <div class="hidden md:block absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                            GitHub
+                        </div>
+                    </a>
+                    
+                    <!-- LinkedIn -->
+                    <a href="https://www.linkedin.com/in/gurupreet-kumar-467ab4375/" target="_blank"
+                       class="group relative w-12 h-12 bg-slate-700/50 backdrop-blur-sm rounded-lg flex items-center justify-center md:hover:bg-gradient-to-br md:hover:from-blue-600 md:hover:to-blue-500 md:transition-all md:duration-300 transform md:hover:scale-110 md:hover:rotate-6 active:bg-slate-600">
+                        <svg class="w-6 h-6 text-gray-300 md:group-hover:text-white md:transition-colors md:duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.98 0h4.79v2.17h.07c.67-1.27 2.3-2.61 4.73-2.61 5.05 0 5.98 3.33 5.98 7.66V24h-5v-6.99c0-1.67-.03-3.82-2.33-3.82-2.33 0-2.69 1.82-2.69 3.7V24h-5V8z"/>
+                        </svg>
+                        <div class="hidden md:block absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                            LinkedIn
+                        </div>
+                    </a>
+                    
+                    <!-- Twitter/X -->
+                    <a href="#" target="_blank"
+                       class="group relative w-12 h-12 bg-slate-700/50 backdrop-blur-sm rounded-lg flex items-center justify-center md:hover:bg-gradient-to-br md:hover:from-gray-800 md:hover:to-gray-900 md:transition-all md:duration-300 transform md:hover:scale-110 active:bg-slate-600">
+                        <svg class="w-5 h-5 text-gray-300 md:group-hover:text-white md:transition-colors md:duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                        <div class="hidden md:block absolute -top-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white text-xs py-1 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                            Twitter
+                        </div>
+                    </a>
+                </div>
+                
+                
+            
+        </div>
+        
+        <!-- Bottom Bar -->
+        
     </div>
-
-    <ul class="flex space-x-4">
-        <li>Home</li>
-        <li>About</li>
-        <li>Privacy Policy</li>
-    </ul>
-
-    <ul class="flex space-x-4 mr-3">
-
-        <a href="https://github.com/GURUPREET6365" target="_blank"
-        class="hover:text-gray-400 transition">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.5 11.5 0 0 1 3-.405c1.02.005 2.045.138 3 .405 2.29-1.552 3.296-1.23 3.296-1.23.653 1.653.242 2.873.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.804 5.625-5.476 5.92.43.372.823 1.102.823 2.222v3.293c0 .322.218.694.825.576C20.565 21.796 24 17.298 24 12 24 5.37 18.627 0 12 0z"/>
-        </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/gurupreet-kumar-467ab4375/" target="_blank"
-        class="hover:text-blue-400 transition">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.98 0h4.79v2.17h.07c.67-1.27 2.3-2.61 4.73-2.61 5.05 0 5.98 3.33 5.98 7.66V24h-5v-6.99c0-1.67-.03-3.82-2.33-3.82-2.33 0-2.69 1.82-2.69 3.7V24h-5V8z"/>
-        </svg>
-        </a>
-
-    </ul>
 </footer>

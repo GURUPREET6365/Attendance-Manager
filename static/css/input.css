@@ -8,3 +8,23 @@
     border-width: 0;
   }
 }
+
+@layer base {
+  html {
+    @apply text-white;
+  }
+}
+
+@layer components {
+  body {
+    @apply bg-slate-900 min-h-screen flex flex-col;
+  }
+  
+  html {
+    @apply bg-slate-900;
+  }
+
+  main{
+    @apply grow;
+  }
+}

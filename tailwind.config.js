@@ -7,7 +7,11 @@ module.exports = {
     "./**/*.html",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'global-bg': '#0f172a'
+      }
+    },
   },
   plugins: [],
 }
