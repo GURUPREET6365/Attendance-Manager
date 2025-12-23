@@ -1,0 +1,343 @@
+{% extends 'main.html' %}
+
+{% block title %}
+    About - Attendance Manager
+{% endblock title %}
+
+{% block content %}
+    <!-- Hero Section -->
+    <section class="relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <!-- Background decorative elements -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4">
+                About <span class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Attendance Manager</span>
+            </h1>
+            <p class="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Empowering students to take control of their academic journey through smart attendance tracking.
+            </p>
+        </div>
+    </section>
+
+    <!-- Tabs Section -->
+    <section class="py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Tab Navigation -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8" role="tablist">
+                <button 
+                    id="tab-about" 
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="panel-about"
+                    class="tab-btn active px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30"
+                    data-tab="about">
+                    <span class="flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        About Us
+                    </span>
+                </button>
+                <button 
+                    id="tab-privacy" 
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="panel-privacy"
+                    class="tab-btn px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 bg-slate-700/50 text-gray-300 border border-slate-600 hover:bg-slate-600/50"
+                    data-tab="privacy">
+                    <span class="flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        Privacy Policy
+                    </span>
+                </button>
+                <button 
+                    id="tab-terms" 
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="panel-terms"
+                    class="tab-btn px-6 py-3 rounded-lg font-semibold text-sm sm:text-base transition-all duration-300 bg-slate-700/50 text-gray-300 border border-slate-600 hover:bg-slate-600/50"
+                    data-tab="terms">
+                    <span class="flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                        Terms & Conditions
+                    </span>
+                </button>
+            </div>
+
+            <!-- Tab Panels -->
+            <!-- About Panel -->
+            <div id="panel-about" role="tabpanel" aria-labelledby="tab-about" class="tab-panel">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-700/80 rounded-2xl p-8 shadow-xl border border-slate-600/50">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white">Who We Are</h2>
+                    </div>
+                    
+                    <div class="space-y-4 text-gray-300 leading-relaxed">
+                        <p>
+                            <strong class="text-white">Attendance Manager</strong> is a comprehensive attendance tracking solution designed specifically for students. Our mission is to help students stay organized, maintain their attendance goals, and succeed academically.
+                        </p>
+                        <p>
+                            We understand the challenges students face in keeping track of their classes and maintaining the required attendance percentage. That's why we built a simple yet powerful tool that sends timely reminders, tracks your progress, and provides valuable insights into your attendance patterns.
+                        </p>
+                        <p>
+                            Whether you're managing attendance for multiple subjects or just want to stay on top of a single course, Attendance Manager adapts to your needs with customizable notifications, detailed analytics, and intuitive tracking features.
+                        </p>
+                    </div>
+
+                    <!-- Features Summary -->
+                    <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-slate-700/50 rounded-lg p-4 text-center border border-slate-600/50">
+                            <div class="text-3xl font-bold text-blue-400 mb-1">100%</div>
+                            <div class="text-sm text-gray-400">Free to Use</div>
+                        </div>
+                        <div class="bg-slate-700/50 rounded-lg p-4 text-center border border-slate-600/50">
+                            <div class="text-3xl font-bold text-purple-400 mb-1">24/7</div>
+                            <div class="text-sm text-gray-400">Accessibility</div>
+                        </div>
+                        <div class="bg-slate-700/50 rounded-lg p-4 text-center border border-slate-600/50">
+                            <div class="text-3xl font-bold text-pink-400 mb-1">Smart</div>
+                            <div class="text-sm text-gray-400">Notifications</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Privacy Panel -->
+            <div id="panel-privacy" role="tabpanel" aria-labelledby="tab-privacy" class="tab-panel hidden">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-700/80 rounded-2xl p-8 shadow-xl border border-slate-600/50">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white">Privacy Policy</h2>
+                    </div>
+                    
+                    <div class="space-y-6 text-gray-300 leading-relaxed">
+                        <p class="text-sm text-gray-400">Last Updated: December 2024</p>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">1. Information We Collect</h3>
+                            <p>We collect the following information when you use Attendance Manager:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-gray-400">
+                                <li>Account information (name, email address, password)</li>
+                                <li>Attendance data (subjects, attendance records, schedules)</li>
+                                <li>Notification preferences and settings</li>
+                                <li>Device information for push notifications</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">2. How We Use Your Information</h3>
+                            <p>Your information is used exclusively to:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-gray-400">
+                                <li>Provide and maintain the attendance tracking service</li>
+                                <li>Send attendance reminders and notifications</li>
+                                <li>Generate attendance reports and analytics</li>
+                                <li>Improve our services and user experience</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">3. Data Security</h3>
+                            <p>
+                                We implement industry-standard security measures to protect your personal information. Your data is encrypted in transit and at rest. We never sell, rent, or share your personal information with third parties for marketing purposes.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">4. Your Rights</h3>
+                            <p>You have the right to:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-gray-400">
+                                <li>Access and download your data</li>
+                                <li>Update or correct your information</li>
+                                <li>Delete your account and associated data</li>
+                                <li>Opt-out of non-essential communications</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">5. Contact Us</h3>
+                            <p>
+                                For any privacy-related questions or concerns, please contact us at 
+                                <a href="mailto:attendancemanager001@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">attendancemanager001@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terms Panel -->
+            <div id="panel-terms" role="tabpanel" aria-labelledby="tab-terms" class="tab-panel hidden">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-700/80 rounded-2xl p-8 shadow-xl border border-slate-600/50">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-orange-600 to-amber-600 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white">Terms & Conditions</h2>
+                    </div>
+                    
+                    <div class="space-y-6 text-gray-300 leading-relaxed">
+                        <p class="text-sm text-gray-400">Effective Date: December 2024</p>
+                        
+                        <p>
+                            By accessing and using Attendance Manager, you agree to be bound by these Terms and Conditions. Please read them carefully before using our service.
+                        </p>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">1. Acceptance of Terms</h3>
+                            <p>
+                                By creating an account or using Attendance Manager, you acknowledge that you have read, understood, and agree to be bound by these terms. If you do not agree, please do not use our service.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">2. User Responsibilities</h3>
+                            <p>As a user, you agree to:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1 text-gray-400">
+                                <li>Provide accurate and truthful information during registration</li>
+                                <li>Maintain the confidentiality of your account credentials</li>
+                                <li>Use the service only for lawful, personal educational purposes</li>
+                                <li>Not attempt to gain unauthorized access to our systems</li>
+                                <li>Not use automated tools or bots to interact with our service</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">3. Service Availability</h3>
+                            <p>
+                                We strive to provide uninterrupted service, but we do not guarantee that Attendance Manager will be available at all times. We reserve the right to modify, suspend, or discontinue any part of the service at any time without prior notice.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">4. Intellectual Property</h3>
+                            <p>
+                                All content, features, and functionality of Attendance Manager, including but not limited to design, graphics, and code, are owned by us and protected by intellectual property laws. You may not copy, modify, or distribute any part of our service without written permission.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">5. Limitation of Liability</h3>
+                            <p>
+                                Attendance Manager is provided "as is" without warranties of any kind. We are not responsible for any academic consequences resulting from the use or misuse of our service. Users are responsible for verifying their attendance records with their educational institutions.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">6. Account Termination</h3>
+                            <p>
+                                We reserve the right to suspend or terminate your account if you violate these terms or engage in any activity that may harm our service or other users. You may also delete your account at any time through your account settings.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">7. Changes to Terms</h3>
+                            <p>
+                                We may update these Terms and Conditions from time to time. Continued use of the service after changes constitutes acceptance of the new terms.
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-2">8. Contact Information</h3>
+                            <p>
+                                For questions regarding these terms, please contact us at 
+                                <a href="mailto:attendancemanager001@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">attendancemanager001@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-2xl p-8 sm:p-12 text-center shadow-xl">
+                <h2 class="text-2xl sm:text-3xl font-bold text-white mb-4">
+                    Have Questions?
+                </h2>
+                <p class="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
+                    We're here to help! Reach out to us with any questions, feedback, or suggestions.
+                </p>
+                <a href="mailto:attendancemanager001@gmail.com" class="inline-flex items-center gap-2 px-8 py-4 bg-white text-purple-600 font-bold rounded-lg shadow-lg active:bg-gray-100 md:hover:bg-gray-100 md:transition-all md:duration-300 md:hover:scale-105 text-lg">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    attendancemanager001@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Tab switching functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        function switchTab(tabName) {
+            // Update buttons
+            tabBtns.forEach(btn => {
+                if (btn.dataset.tab === tabName) {
+                    btn.classList.remove('bg-slate-700/50', 'text-gray-300', 'border', 'border-slate-600', 'hover:bg-slate-600/50');
+                    btn.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-purple-600', 'text-white', 'shadow-lg', 'shadow-blue-500/30');
+                    btn.setAttribute('aria-selected', 'true');
+                } else {
+                    btn.classList.add('bg-slate-700/50', 'text-gray-300', 'border', 'border-slate-600', 'hover:bg-slate-600/50');
+                    btn.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-purple-600', 'text-white', 'shadow-lg', 'shadow-blue-500/30');
+                    btn.setAttribute('aria-selected', 'false');
+                }
+            });
+
+            // Update panels
+            tabPanels.forEach(panel => {
+                if (panel.id === `panel-${tabName}`) {
+                    panel.classList.remove('hidden');
+                } else {
+                    panel.classList.add('hidden');
+                }
+            });
+
+            // Update URL hash without scrolling
+            history.replaceState(null, null, `#${tabName}`);
+        }
+
+        // Click handlers
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
+
+        // Handle hash on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.slice(1);
+            if (hash && ['about', 'privacy', 'terms'].includes(hash)) {
+                switchTab(hash);
+            }
+        });
+
+        // Handle hash changes (for footer links)
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.slice(1);
+            if (hash && ['about', 'privacy', 'terms'].includes(hash)) {
+                switchTab(hash);
+            }
+        });
+    </script>
+{% endblock content %}

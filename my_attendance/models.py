@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 class Attendance(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True, unique=True)
 
     day = models.IntegerField()
 

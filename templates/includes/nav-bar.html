@@ -34,7 +34,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" 
+                    <a href="{% url 'about' %}" target="_blank"
                        class="px-4 py-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 font-medium transform hover:scale-105">
                         About
                     </a>
@@ -51,27 +51,27 @@
             <div class="hidden md:flex items-center space-x-4">
                 {% if user.is_authenticated %}
                     <div class="flex items-center space-x-3 px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
-                        <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5z"/>
-                            </svg>
-                        </div>
-                        <span class="font-semibold text-gray-800">{{user.username}}</span>
+                        {% if user.profile.avatar %}
+                            <img src="{{ user.profile.avatar.url }}" alt="{{ user.first_name }}" class="w-8 h-8 rounded-full object-cover">
+                        {% else %}
+                            <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5z"/>
+                                </svg>
+                            </div>
+                        {% endif %}
+                        <span class="font-semibold text-gray-800">{{user.first_name}}</span>
                     </div>
                 {% else %}
                     <a href="{% url 'login' %}" 
-                       class="px-5 py-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-300">
-                        Login
-                    </a>
-                    <a href="{% url 'register' %}" 
                        class="px-5 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg">
-                        Register
+                        Sign In / Sign Up
                     </a>
                 {% endif %}
             </div>
             
             <!-- Mobile Menu Button (Label for checkbox) -->
-            <label for="menu-toggle" class="md:hidden p-2 rounded-lg cursor-pointer active:bg-gray-100 hover:bg-gray-50 transition-colors duration-300">
+            <label for="menu-toggle" class="md:hidden p-2 rounded-lg cursor-pointer md:active:bg-gray-100 md:hover:bg-gray-50 transition-colors duration-300">
                 <!-- Hamburger Icon (visible when menu is closed) -->
                 <svg class="w-6 h-6 text-gray-700 peer-checked:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
@@ -111,11 +111,15 @@
         <!-- User Info (if authenticated) -->
         {% if user.is_authenticated %}
         <div class="flex items-center space-x-3 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border border-blue-200">
-            <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-                <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5z"/>
-                </svg>
-            </div>
+            {% if user.profile.avatar %}
+                <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}" class="w-12 h-12 rounded-full object-cover">
+            {% else %}
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+                    <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 12c2.76 0 5-2.24 5-5S14.76 2 12 2 7 4.24 7 7s2.24 5 5 5zm0 2c-4.42 0-8 2.24-8 5v3h16v-3c0-2.76-3.58-5-8-5z"/>
+                    </svg>
+                </div>
+            {% endif %}
             <div>
                 <p class="font-semibold text-gray-800">{{user.username}}</p>
                 <p class="text-sm text-gray-500">Online</p>
@@ -149,16 +153,12 @@
             </a>
         </nav>
         
-        <!-- Mobile Auth Buttons -->
+        <!-- Mobile Auth Button -->
         {% if not user.is_authenticated %}
-        <div class="space-y-3 pt-4 border-t border-gray-200">
-            <a href="{% url 'login' %}" 
-               class="block w-full px-5 py-3 text-center text-blue-600 font-semibold border-2 border-blue-600 rounded-lg hover:bg-blue-50 active:bg-blue-100 transition-colors duration-300">
-                Login
-            </a>
-            <a href="{% url 'register' %}" 
+        <div class="pt-4 border-t border-gray-200">
+            <a href="#" 
                class="block w-full px-5 py-3 text-center bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 transition-all duration-300 shadow-md">
-                Register
+                Sign In / Sign Up
             </a>
         </div>
         {% endif %}
