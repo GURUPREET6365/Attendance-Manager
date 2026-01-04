@@ -22,7 +22,6 @@ def create_user_preferences(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_preferences(sender, instance, **kwargs):
-    if hasattr(instance, 'preferences'):
-        instance.preferences.save()
-    else:
+    # Only create preferences if they don't exist, don't overwrite existing ones
+    if not hasattr(instance, 'preferences'):
         UserPreferences.objects.create(user=instance)

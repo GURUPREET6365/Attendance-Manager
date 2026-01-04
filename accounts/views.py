@@ -82,6 +82,18 @@ def changelastname(request):
         return JsonResponse({'success': False, 'message': 'Last name cannot be empty.'})
 
 @login_required
+def changechrometime(request):
+    if request.method == 'POST':
+        chrome_time = request.POST.get('chrome_time')
+        if chrome_time:
+            from .models import UserPreferences
+            prefs, created = UserPreferences.objects.get_or_create(user=request.user)
+            prefs.chrome_notification_time = chrome_time
+            prefs.save()
+            return JsonResponse({'success': True, 'message': 'Notification time updated successfully.'})
+        return JsonResponse({'success': False, 'message': 'Time cannot be empty.'})
+
+@login_required
 def update_preferences(request):
     if request.method == 'POST':
         try:
