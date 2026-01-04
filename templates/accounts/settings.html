@@ -1,0 +1,260 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}
+    Settings - Attendance Manager
+{% endblock title %}
+
+{% block content %}
+<div class="min-h-screen bg-slate-900 pb-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-10">
+            <div>
+                <h1 class="text-3xl sm:text-4xl font-bold text-white tracking-tight">Settings</h1>
+                <p class="text-slate-400 mt-2 text-lg">Manage your profile and account preferences</p>
+            </div>
+            <a href="{% url 'home' %}" class="p-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all duration-200 border border-slate-700/50 hover:border-slate-600 group shadow-lg" aria-label="Close settings">
+                <svg class="w-6 h-6 md:group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="space-y-8">
+            
+            <!-- Profile Section -->
+            <section class="bg-slate-800/50 rounded-3xl border border-slate-700/50 overflow-hidden backdrop-blur-sm">
+                <div class="p-6 sm:p-8">
+                    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
+                        <div class="relative group">
+                            <div class="w-32 h-32 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white shadow-2xl ring-4 ring-slate-800 ">
+                                {% if user.profile.avatar %}
+                                    <img src="{{ user.profile.avatar.url }}" alt="Profile" class="w-full h-full rounded-full object-cover">
+                                {% else %}
+                                    <span></span>
+                                {% endif %}
+                            </div>
+                            <!-- Upload overlay (visual only since no JS) -->
+                            <div class="absolute inset-0 rounded-full bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity cursor-pointer">
+                                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <div class="absolute bottom-2 right-2 w-6 h-6 bg-green-500 border-4 border-slate-800 rounded-full"></div>
+                        </div>
+
+                        <div class="flex-1 text-center sm:text-left space-y-4 w-full">
+                            <div>
+                                <h2 class="text-3xl font-bold text-white">{{ user.first_name }} {{ user.last_name }}</h2>
+                                <p class="text-blue-400 font-medium text-lg username" id="username">@{{ user.username }}</p>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
+                                <div class="px-4 py-2 bg-slate-900/50 rounded-xl border border-slate-700/50 flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span class="text-slate-300 text-sm">Joined {{ user.date_joined|date:"F Y" }}</span>
+                                </div>
+                                <div class="px-4 py-2 bg-slate-900/50 rounded-xl border border-slate-700/50 flex items-center gap-3">
+                                    <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span class="text-slate-300 text-sm">Active Account</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Personal Information -->
+            <section class="space-y-4">
+                <h3 class="text-xl font-bold text-white px-2">Personal Information</h3>
+                <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-700">
+                        <div class="p-6 hover:bg-slate-750 transition-colors">
+                            <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Email Address</label>
+                            <div class="mt-2 flex items-center justify-between">
+                                <span class="text-lg text-slate-200 font-medium">{{ user.email }}</span>
+                                
+                            </div>
+                        </div>
+                        <!-- username -->
+                        <!-- Username -->
+                        <div class="relative">
+                            <div id="username_show_field" class="p-6 hover:bg-slate-700/50 transition-colors h-full">
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Username</label>
+                                <div class="mt-2 flex items-center justify-between">
+                                    <span id="username" class="text-lg text-slate-200 font-medium username" >{{ user.username }}</span>
+                                    <button id="username_edit" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold transition-colors">Edit</button>
+                                </div>
+                            </div>
+                            <div id="username_input_container" class="p-6 hover:bg-slate-700/50 transition-colors h-full hidden">
+                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Username</label>
+                                <div class="mt-2 flex items-center gap-3">
+                                    <input id="usernameInput" name="username" value="{{ user.username }}" class="bg-slate-900/50 border border-slate-600 rounded-lg px-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 w-full transition-colors">
+                                    <button id="username_edit_save" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-blue-500/10 transition-colors">Save</button>
+                                </div>
+                                <p id="username_message" class="mt-2 text-red-400 text-sm hidden"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- First Name & Last Name Grid -->
+                    <div class="border-t border-slate-700 grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-700">
+                            
+                            <!-- First Name -->
+                            <div class="relative">
+                                <div id="firstname_show_field" class="p-6 hover:bg-slate-700/50 transition-colors h-full">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">First Name</label>
+                                    <div class="mt-2 flex items-center justify-between">
+                                        <span id="firstname" class="text-lg text-slate-200 font-medium">{{ user.first_name }}</span>
+                                        <button id="firstname_edit" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold transition-colors">Edit</button>
+                                    </div>
+                                </div>
+                                <div id="firstname_input_container" class="p-6 hover:bg-slate-700/50 transition-colors h-full hidden">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">First Name</label>
+                                    <div class="mt-2 flex items-center gap-3">
+                                        <input id="firstnameInput" name="first_name" value="{{ user.first_name }}" class="bg-slate-900/50 border border-slate-600 rounded-lg px-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 w-full transition-colors">
+                                        <button id="firstname_edit_save" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-blue-500/10 transition-colors">Save</button>
+                                    </div>
+                                    <p id="firstname_message" class="mt-2 text-red-400 text-sm hidden"></p>
+                                </div>
+                            </div>
+                            
+                            <!-- Last Name -->
+                            <div class="relative">
+                                <div id="lastname_show_field" class="p-6 hover:bg-slate-700/50 transition-colors h-full">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Last Name</label>
+                                    <div class="mt-2 flex items-center justify-between">
+                                        <span id="lastname" class="text-lg text-slate-200 font-medium">{{ user.last_name }}</span>
+                                        <button id="lastname_edit" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold transition-colors">Edit</button>
+                                    </div>
+                                </div>
+                                <div id="lastname_input_container" class="p-6 hover:bg-slate-700/50 transition-colors h-full hidden">
+                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Last Name</label>
+                                    <div class="mt-2 flex items-center gap-3">
+                                        <input id="lastnameInput" name="last_name" value="{{ user.last_name }}" class="bg-slate-900/50 border border-slate-600 rounded-lg px-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 w-full transition-colors">
+                                        <button id="lastname_edit_save" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-blue-500/10 transition-colors">Save</button>
+                                    </div>
+                                    <p id="lastname_message" class="mt-2 text-red-400 text-sm hidden"></p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </section>
+
+            <!-- Preferences & Privacy -->
+            <section class="space-y-4">
+                <div class="flex items-center justify-between px-2">
+                    <h3 class="text-xl font-bold text-white">Notification Preferences</h3>
+                    <button id="savePreferencesBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-blue-500/20">
+                        Save Preferences
+                    </button>
+                </div>
+                <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden divide-y divide-slate-700">
+                    
+                    <!-- School Days -->
+                    <div class="p-6 hover:bg-slate-750 transition-colors">
+                        <div class="flex items-center justify-between mb-2">
+                            <label class="text-lg font-medium text-white">Total School Days</label>
+                            <input type="number" id="totalSchoolDays" value="{{ user.preferences.total_school_days }}" class="bg-slate-900 border border-slate-600 rounded-lg px-3 py-1.5 text-white w-24 text-center focus:border-blue-500 focus:outline-none">
+                        </div>
+                        <p class="text-slate-400 text-sm">Total number of working days in the academic year</p>
+                    </div>
+
+                    <!-- Chrome Notification Settings -->
+                    <div class="p-6 hover:bg-slate-750 transition-colors">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-4">
+                                <div class="p-3 bg-blue-500/10 rounded-xl text-blue-400">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-white">Daily Attendance Reminders</h4>
+                                    <p class="text-slate-400 text-sm">Get push notifications.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <button id="enableChromeBtn" class="hidden text-xs bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded transition-colors">Request Permission</button>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="chromeToggle" class="sr-only peer" {% if user.preferences.chrome_notifications_enabled %}checked{% endif %}>
+                                    <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div id="chromeTimeContainer" class="ml-16 {% if not user.preferences.chrome_notifications_enabled %}hidden{% endif %}">
+                            <label class="text-sm text-slate-400 mr-3">Send daily reminder at:</label>
+                            <input type="time" id="chromeTime" value="{{ user.preferences.chrome_notification_time|time:'H:i' }}" class="bg-slate-900 border border-slate-600 rounded-lg px-3 py-1 text-white focus:border-blue-500 focus:outline-none">
+                        </div>
+                        <p id="chromePermissionMsg" class="ml-16 mt-2 text-xs text-yellow-500 hidden">
+                            Permission required for notifications to work.
+                        </p>
+                        
+                        <!-- Test Notification Button -->
+                        <div class="ml-16 mt-4">
+                            <button id="testNotificationBtn" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded-lg transition-colors">
+                                🧪 Test Notification
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Manual Trigger Info -->
+                    <div class="p-6 bg-gradient-to-r from-purple-500/10 to-blue-500/10 border-l-4 border-purple-500">
+                        <div class="flex items-start gap-4">
+                            <div class="p-2 bg-purple-500/20 rounded-lg text-purple-400 mt-1">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium text-white mb-2">Daily Trigger Button</h4>
+                                <p class="text-slate-300 text-sm mb-2">
+                                    A floating button (🔔) appears on every page that you can click daily to get your attendance reminder.
+                                </p>
+                                <p class="text-slate-400 text-xs">
+                                    Perfect for when you want to manually trigger your daily reminder or if automatic notifications don't work on your hosting platform.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="preferencesMsg" class="hidden p-4 rounded-xl text-center text-sm font-bold"></div>
+            </section>
+
+            <!-- Danger Zone -->
+            <section class="space-y-4 pt-4">
+                <a href="{% url 'logout' %}">
+                <div class="bg-red-500/5 rounded-2xl border border-red-500/20 overflow-hidden divide-y divide-red-500/10">
+                    <div class="p-6 flex items-center justify-between group hover:bg-red-500/10 transition-colors cursor-pointer">
+                        <div class="flex items-center gap-4">
+                            <div class="p-3 bg-red-500/10 rounded-xl text-red-400">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-medium text-red-200">Sign Out</h4>
+                                <p class="text-red-400/60 text-sm">Sign out of your current session</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                        </svg>
+                    </div>
+                </div>
+            </a>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/accounts/settings.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,14 @@
+django
+celery
+redis
+django-celery-beat
+django-allauth
+dj-database-url
+psycopg2-binary
+python-dotenv
+PyJWT
+cryptography
+requests
+oauthlib
+python3-openid
+requests-oauthlib
