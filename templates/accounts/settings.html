@@ -88,18 +88,11 @@
                             <div id="username_show_field" class="p-6 hover:bg-slate-700/50 transition-colors h-full">
                                 <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Username</label>
                                 <div class="mt-2 flex items-center justify-between">
-                                    <span id="username_display" class="text-lg text-slate-200 font-medium username" >{{ user.username }}</span>
-                                    <button id="username_edit" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold transition-colors">Edit</button>
+                                    <span id="username" class="text-lg text-slate-200 font-medium username" >{{ user.username }}</span>
+                                    
                                 </div>
                             </div>
-                            <div id="username_input_container" class="p-6 hover:bg-slate-700/50 transition-colors h-full hidden">
-                                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Username</label>
-                                <div class="mt-2 flex items-center gap-3">
-                                    <input id="usernameInput" name="username" value="{{ user.username }}" class="bg-slate-900/50 border border-slate-600 rounded-lg px-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 w-full transition-colors">
-                                    <button id="username_edit_save" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-blue-500/10 transition-colors">Save</button>
-                                </div>
-                                <p id="username_message" class="mt-2 text-red-400 text-sm hidden"></p>
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -112,17 +105,10 @@
                                     <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">First Name</label>
                                     <div class="mt-2 flex items-center justify-between">
                                         <span id="firstname" class="text-lg text-slate-200 font-medium">{{ user.first_name }}</span>
-                                        <button id="firstname_edit" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold transition-colors">Edit</button>
+                                        
                                     </div>
                                 </div>
-                                <div id="firstname_input_container" class="p-6 hover:bg-slate-700/50 transition-colors h-full hidden">
-                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">First Name</label>
-                                    <div class="mt-2 flex items-center gap-3">
-                                        <input id="firstnameInput" name="first_name" value="{{ user.first_name }}" class="bg-slate-900/50 border border-slate-600 rounded-lg px-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 w-full transition-colors">
-                                        <button id="firstname_edit_save" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-blue-500/10 transition-colors">Save</button>
-                                    </div>
-                                    <p id="firstname_message" class="mt-2 text-red-400 text-sm hidden"></p>
-                                </div>
+                               
                             </div>
                             
                             <!-- Last Name -->
@@ -131,17 +117,10 @@
                                     <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Last Name</label>
                                     <div class="mt-2 flex items-center justify-between">
                                         <span id="lastname" class="text-lg text-slate-200 font-medium">{{ user.last_name }}</span>
-                                        <button id="lastname_edit" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold transition-colors">Edit</button>
+                                        
                                     </div>
                                 </div>
-                                <div id="lastname_input_container" class="p-6 hover:bg-slate-700/50 transition-colors h-full hidden">
-                                    <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Last Name</label>
-                                    <div class="mt-2 flex items-center gap-3">
-                                        <input id="lastnameInput" name="last_name" value="{{ user.last_name }}" class="bg-slate-900/50 border border-slate-600 rounded-lg px-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 w-full transition-colors">
-                                        <button id="lastname_edit_save" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-blue-500/10 transition-colors">Save</button>
-                                    </div>
-                                    <p id="lastname_message" class="mt-2 text-red-400 text-sm hidden"></p>
-                                </div>
+                                
                             </div>
                         </div>
                 </div>
@@ -151,9 +130,7 @@
             <section class="space-y-4">
                 <div class="flex items-center justify-between px-2">
                     <h3 class="text-xl font-bold text-white">Notification Preferences</h3>
-                    <button id="savePreferencesBtn" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-blue-500/20">
-                        Save Preferences
-                    </button>
+                    
                 </div>
                 <div class="bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden divide-y divide-slate-700">
                     
@@ -181,7 +158,6 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
-                                <button id="enableChromeBtn" class="hidden text-xs bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded transition-colors">Request Permission</button>
                                 <label class="relative inline-flex items-center cursor-pointer">
                                     <input type="checkbox" id="chromeToggle" class="sr-only peer" {% if user.preferences.chrome_notifications_enabled %}checked{% endif %}>
                                     <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
@@ -191,26 +167,10 @@
                         
                         <!-- Notification Time Setting -->
                         <div id="chromeTimeContainer" class="ml-16 {% if not user.preferences.chrome_notifications_enabled %}hidden{% endif %}">
-                            <!-- Show Time Field -->
-                            <div id="chrometime_show_field" class="flex items-center justify-between">
-                                <div>
-                                    <label class="text-sm text-slate-400">Send daily reminder at:</label>
-                                    <div class="mt-1">
-                                        <span id="chrometime" class="text-lg text-slate-200 font-medium">{{ user.preferences.chrome_notification_time|time:'H:i' }}</span>
-                                    </div>
-                                </div>
-                                <button id="chrometime_edit" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold transition-colors">Edit</button>
-                            </div>
-                            
-                            <!-- Edit Time Field -->
-                            <div id="chrometime_input_container" class="flex items-center justify-between hidden">
-                                <div class="flex-1">
-                                    <label class="text-sm text-slate-400">Send daily reminder at:</label>
-                                    <div class="mt-1 flex items-center gap-3">
-                                        <input id="chrometimeInput" type="time" value="{{ user.preferences.chrome_notification_time|time:'H:i' }}" class="bg-slate-900/50 border border-slate-600 rounded-lg px-3 py-1.5 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 transition-colors">
-                                        <button id="chrometime_edit_save" class="text-sm cursor-pointer text-blue-400 hover:text-blue-300 font-semibold whitespace-nowrap px-3 py-1.5 rounded-lg hover:bg-blue-500/10 transition-colors">Save</button>
-                                    </div>
-                                    <p id="chrometime_message" class="mt-2 text-red-400 text-sm hidden"></p>
+                            <div>
+                                <label class="text-sm text-slate-400">Send daily reminder at:</label>
+                                <div class="mt-1">
+                                    <span class="text-lg text-slate-200 font-medium">6:30 AM</span>
                                 </div>
                             </div>
                         </div>

@@ -32,9 +32,7 @@ class AccountsApiTests(TestCase):
         url = reverse('update_preferences')
         data = {
             'total_school_days': 240,
-            'email_notification_time': '10:00',
             'chrome_notification_time': '09:00',
-            'email_notifications_enabled': 'false',
             'chrome_notifications_enabled': 'true'
         }
         response = self.client.post(url, data)
@@ -43,8 +41,6 @@ class AccountsApiTests(TestCase):
         
         self.preferences.refresh_from_db()
         self.assertEqual(self.preferences.total_school_days, 240)
-        self.assertEqual(str(self.preferences.email_notification_time), '10:00:00')
-        self.assertFalse(self.preferences.email_notifications_enabled)
         self.assertTrue(self.preferences.chrome_notifications_enabled)
 
     def test_change_firstname_empty(self):

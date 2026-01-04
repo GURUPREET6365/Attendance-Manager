@@ -1,10 +1,7 @@
 django
-celery
-redis
-django-celery-beat
 django-allauth
 dj-database-url
-psycopg2-binary
+mysqlclient
 python-dotenv
 PyJWT
 cryptography

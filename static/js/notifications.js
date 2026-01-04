@@ -123,10 +123,72 @@ class AttendanceNotificationManager {
         // Check every minute if it's time for notification
         setInterval(() => {
             this.checkNotificationTime();
+            this.checkServerTriggers(); // Check server-side triggers
         }, 60000); // Check every minute
 
         // Also check immediately
         this.checkNotificationTime();
+        this.checkServerTriggers();
+    }
+
+    async checkServerTriggers() {
+        try {
+            const response = await fetch('/notifications/check/', {
+                method: 'GET',
+                headers: {
+                    'X-CSRFToken': this.getCSRFToken(),
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            const data = await response.json();
+            
+            if (data.success && data.count > 0) {
+                // Show notification for each trigger
+                for (const trigger of data.triggers) {
+                    this.showAttendanceReminder();
+                    
+                    // Mark as read
+                    await this.markTriggerAsRead(trigger.id);
+                }
+                
+                console.log(`🔔 Processed ${data.count} server-side notification triggers`);
+            }
+        } catch (error) {
+            console.error('Error checking server triggers:', error);
+        }
+    }
+
+    async markTriggerAsRead(triggerId) {
+        try {
+            await fetch('/notifications/mark-read/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': this.getCSRFToken(),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ trigger_id: triggerId })
+            });
+        } catch (error) {
+            console.error('Error marking trigger as read:', error);
+        }
+    }
+
+    getCSRFToken() {
+        // Try to get from cookie first
+        const cookies = document.cookie.split("; ");
+        const csrfCookie = cookies.find(cookie => cookie.startsWith("csrftoken="));
+        if (csrfCookie) {
+            return csrfCookie.split("=")[1];
+        }
+        
+        // Fallback to meta tag
+        const metaTag = document.querySelector('meta[name="csrf-token"]');
+        if (metaTag) {
+            return metaTag.getAttribute('content');
+        }
+        
+        return null;
     }
 
     checkNotificationTime() {
