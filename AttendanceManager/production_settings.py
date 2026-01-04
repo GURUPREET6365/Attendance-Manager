@@ -7,8 +7,8 @@ from .secrets import *
 # Security settings for production
 DEBUG = False
 ALLOWED_HOSTS = [
-    'gurupreetattenda.pythonanywhere.com',
-    'www.gurupreetattenda.pythonanywhere.com',
+    'gurupreetattendancemanager.pythonanywhere.com',
+    'www.gurupreetattendancemanager.pythonanywhere.com',
 ]
 
 # Database configuration for MySQL on PythonAnywhere
@@ -27,11 +27,14 @@ DATABASES = {
 }
 
 # Static files configuration
-STATIC_ROOT = '/home/gurupreetattenda/mysite/static'
+STATIC_ROOT = '/home/gurupreetattendancemanager/mysite/static'
 STATIC_URL = '/static/'
 
+# Override STATICFILES_DIRS for production (empty for collectstatic)
+STATICFILES_DIRS = []
+
 # Media files (if you have any)
-MEDIA_ROOT = '/home/gurupreetattenda/mysite/media'
+MEDIA_ROOT = '/home/gurupreetattendancemanager/mysite/media'
 MEDIA_URL = '/media/'
 
 # Security settings
