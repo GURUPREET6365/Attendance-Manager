@@ -7,7 +7,7 @@ import os
 import sys
 
 # Add your project directory to the sys.path
-path = '/home/gurupreetattendancemanager/mysite'
+path = '/home/gurupreetattenda/mysite'
 if path not in sys.path:
     sys.path.insert(0, path)
 
