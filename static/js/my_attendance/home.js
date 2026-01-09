@@ -58,6 +58,78 @@ window.markAttendance = function(status) {
     });
 };
 
+// New function for marking attendance on specific dates
+window.markAttendanceForDate = function(status) {
+    const msgDiv = document.getElementById('markDateMsg');
+    const dateInput = document.getElementById('attendanceDate');
+    
+    if (!dateInput.value) {
+        if (msgDiv) {
+            msgDiv.classList.remove('hidden');
+            msgDiv.textContent = "Please select a date first";
+            msgDiv.className = "mt-4 p-4 rounded-xl text-center text-sm font-bold bg-red-500/10 text-red-400 border border-red-500/20";
+        }
+        return;
+    }
+    
+    // Helper for CSRF token (reused)
+    function getCSRFToken() {
+        // Try to get from cookie first
+        const cookies = document.cookie.split("; ");
+        const csrfCookie = cookies.find(cookie => cookie.startsWith("csrftoken="));
+        if (csrfCookie) {
+            return csrfCookie.split("=")[1];
+        }
+        
+        // Fallback to meta tag
+        const metaTag = document.querySelector('meta[name="csrf-token"]');
+        if (metaTag) {
+            return metaTag.getAttribute('content');
+        }
+        
+        return null;
+    }
+
+    const formData = new FormData();
+    formData.append('status', status);
+    formData.append('date', dateInput.value);
+
+    const csrfToken = getCSRFToken();
+    console.log('CSRF Token:', csrfToken); // Debug log
+    console.log('Marking attendance with status:', status, 'for date:', dateInput.value); // Debug log
+
+    fetch('/mark/', {
+        method: 'POST',
+        headers: { "X-CSRFToken": csrfToken },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (msgDiv) {
+            msgDiv.classList.remove('hidden');
+            if (data.success) {
+                msgDiv.textContent = data.message;
+                msgDiv.className = "mt-4 p-4 rounded-xl text-center text-sm font-bold bg-green-500/10 text-green-400 border border-green-500/20";
+                // Clear the date input after successful marking
+                dateInput.value = '';
+                // Reload after short delay to show stats update
+                setTimeout(() => window.location.reload(), 1500);
+            } else {
+                msgDiv.textContent = data.message;
+                msgDiv.className = "mt-4 p-4 rounded-xl text-center text-sm font-bold bg-red-500/10 text-red-400 border border-red-500/20";
+            }
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        if (msgDiv) {
+            msgDiv.classList.remove('hidden');
+            msgDiv.textContent = "An error occurred";
+            msgDiv.className = "mt-4 p-4 rounded-xl text-center text-sm font-bold bg-red-500/10 text-red-400 border border-red-500/20";
+        }
+    });
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     const dataContainer = document.getElementById('dashboardData');
     if (!dataContainer) {

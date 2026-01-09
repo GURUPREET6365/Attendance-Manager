@@ -1,5 +1,6 @@
 .env
 AttendanceManager/secrets.py
+AttendanceManager/production_settings.py
 __pycache__/
 *.pyc
 *.pyo

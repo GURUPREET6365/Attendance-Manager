@@ -69,34 +69,40 @@ def mark_attendance(request):
     print(f"POST data: {request.POST}")  # Debug log
     
     status = request.POST.get('status')
+    attendance_date = request.POST.get('date')  # New: allow custom date
     
     if not status:
         print("No status provided")  # Debug log
         return JsonResponse({'success': False, 'message': 'Status is required.'})
 
-    today = date.today()
-    print(f"Marking attendance for date: {today}")  # Debug log
+    # Use provided date or default to today
+    if attendance_date:
+        try:
+            target_date = datetime.strptime(attendance_date, '%Y-%m-%d').date()
+        except ValueError:
+            return JsonResponse({'success': False, 'message': 'Invalid date format.'})
+    else:
+        target_date = date.today()
     
-    # Check if record exists for this user and today
-    # Note: auto_now_add=True on 'date' means we rely on creation logic mostly.
-    # We filter explicitly by date.
+    print(f"Marking attendance for date: {target_date}")  # Debug log
     
-    attendance_qs = Attendance.objects.filter(user=request.user, date=today)
+    # Check if record exists for this user and target date
+    attendance_qs = Attendance.objects.filter(user=request.user, date=target_date)
     
     if attendance_qs.exists():
         attendance = attendance_qs.first()
         created = False
-        message = "Attendance updated successfully."
+        message = f"Attendance updated successfully for {target_date.strftime('%B %d, %Y')}."
     else:
         # Create new record
         attendance = Attendance(
             user=request.user,
-            date=today,
-            day=today.day,
-            month=today.month,
+            date=target_date,
+            day=target_date.day,
+            month=target_date.month,
         )
         created = True
-        message = "Attendance marked successfully."
+        message = f"Attendance marked successfully for {target_date.strftime('%B %d, %Y')}."
 
     # Update logic
     if status == 'present':
@@ -118,7 +124,7 @@ def mark_attendance(request):
         'success': True, 
         'message': message,
         'status': status,
-        'date': str(today)
+        'date': str(target_date)
     })
 @require_GET
 def check_today_attendance(request):
