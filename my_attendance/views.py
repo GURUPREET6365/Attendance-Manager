@@ -15,10 +15,13 @@ def home(request):
         start_date = request.GET.get('start_date')
         end_date = request.GET.get('end_date')
         
-        # Base queryset
-        attendance_records = Attendance.objects.filter(user=request.user)
+        # Base queryset for ALL records (for stats calculation)
+        all_attendance_records = Attendance.objects.filter(user=request.user)
         
-        # Apply date filters if provided
+        # Filtered queryset for display
+        attendance_records = all_attendance_records
+        
+        # Apply date filters if provided (only for display, not stats)
         if start_date:
             try:
                 start_date_obj = datetime.strptime(start_date, '%Y-%m-%d').date()
@@ -38,18 +41,18 @@ def home(request):
         attendance_records = attendance_records.order_by('-date')
         context['attendance_records'] = attendance_records
         
-        # Calculate stats
-        present_count = attendance_records.filter(is_present=True).count()
-        school_off_count = attendance_records.filter(is_school_off=True).count()
+        # Calculate stats from ALL records (not filtered ones)
+        present_count = all_attendance_records.filter(is_present=True).count()
+        school_off_count = all_attendance_records.filter(is_school_off=True).count()
         # Absent is when not present AND not school off
-        absent_count = attendance_records.filter(is_present=False, is_school_off=False).count()
+        absent_count = all_attendance_records.filter(is_present=False, is_school_off=False).count()
         
         context['present_count'] = present_count
         context['absent_count'] = absent_count
         context['school_off_count'] = school_off_count
         
-        # Calculate attendance percentage
-        total_days = attendance_records.count()
+        # Calculate attendance percentage from ALL records
+        total_days = all_attendance_records.count()
         if total_days > 0:
             attendance_percentage = (present_count / total_days) * 100
             context['attendance_percentage'] = round(attendance_percentage, 1)
